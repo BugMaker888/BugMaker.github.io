@@ -1,0 +1,30 @@
+<head>
+    <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css" />
+</head>
+
+<body>
+    <div id="waline"></div>
+    <script>
+        function getQueryString(name) {
+            let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            let r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return decodeURIComponent(r[2]);
+            };
+            return "";
+        }
+        Waline.init({
+            el: "#waline",
+            serverURL: "https://mirror-comment.vercel.app/",
+            path: getQueryString("path"),
+            login: "disable",
+            imageUploader: false,
+            copyright: false,
+            meta: ["nick", "mail"],
+            emoji: [
+                "https://unpkg.com/@waline/emojis@1.0.1/bilibili",
+            ],
+        });
+    </script>
+</body>
