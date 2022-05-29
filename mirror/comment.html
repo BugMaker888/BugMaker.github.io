@@ -16,10 +16,11 @@
             };
             return "";
         }
+
         Waline.init({
             el: "#waline",
             serverURL: "https://mirror-comment.vercel.app/",
-            path: getQueryString("path"),
+            path: (getQueryString("path") || "/"),
             login: "disable",
             imageUploader: false,
             copyright: false,
@@ -28,5 +29,9 @@
                 "https://unpkg.com/@waline/emojis@1.0.1/bilibili",
             ],
         });
+
+        // Hides gif
+        var buttons = document.querySelectorAll("button.wl-action");
+        buttons[1].style.display = "none";
     </script>
 </body>
