@@ -1,0 +1,43 @@
+<head>
+    <title>Mirror Pageview</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+    <script src="https://unpkg.com/@waline/client/dist/pageview.js"></script>
+    <style>
+        .pageview {
+            display: inline;
+            width: auto;
+            height: 24px;
+            padding: 2px 10px;
+            border-radius: 26px;
+            -moz-border-radius: 26px;
+            vertical-align: baseline;
+            text-align: center;
+            font-size: 16px;
+            color: #00000099;
+            background-color: #00000008;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pageview">
+        当前页面浏览量: <span class="pageview-count">...</span>
+    </div>
+    
+    <script>
+        function getQueryString(name) {
+            let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            let r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return decodeURIComponent(r[2]);
+            };
+            return "";
+        }
+
+        Waline.pageviewCount({
+            serverURL: "https://mirror-comment.vercel.app",
+            path: (getQueryString("path") || "/"),
+            selector: '.pageview-count',
+        });
+    </script>
+</body>
